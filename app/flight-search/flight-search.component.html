@@ -1,0 +1,51 @@
+<h1>Search Flights</h1>
+
+<form name="form" novalidate>
+
+    <div class="form-group">
+        <label>From:</label>
+        <input  name="from"
+                class="form-control"
+                ng-model="$ctrl.from">
+    </div>
+
+    <div class="form-group">
+        <label>To:</label>
+        <input
+                class="form-control"
+                ng-model="$ctrl.to"
+                name="to">
+    </div>
+
+    <div class="form-group">
+        <button
+                class="btn btn-primary"
+                ng-click="$ctrl.search()">Search!</button>
+    </div>
+</form>
+
+
+<div ng-repeat="f in $ctrl.flights">
+    <flight-card
+            item="f"
+            selected-item="$ctrl.selectedFlight"
+            selected-item-change="$ctrl.selectedFlight = $event">
+    </flight-card>
+</div>
+<!--
+<table class="table table-striped">
+    <tr ng-repeat="f in $ctrl.flights" ng-class="{'active': f == $ctrl.selectedFlight}">
+        <td>{{f.id}}</td>
+        <td>{{f.from}}</td>
+        <td>{{f.to}}</td>
+        <td>{{f.date | date:'short'}}</td>
+        <td><a ng-click="$ctrl.select(f)">Auswählen</a></td>
+        <td><a ui-sref="flightEdit({id: f.id})">Editieren</a></td>
+    </tr>
+</table>
+-->
+
+<pre>Warenkorb
+----------------------
+{{$ctrl.selectedFlight | json }}
+</pre>
